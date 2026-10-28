@@ -1,0 +1,18 @@
+# Hệ điều hành và trình soạn thảo
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Môi trường và dữ liệu bí mật
+.env
+.env.*
+!.env.example
+
+# Thư mục sinh tự động
+.venv/
+venv/
+__pycache__/
+node_modules/
+dist/
+build/
