@@ -3,34 +3,949 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Portfolio cá nhân của Sơn — sinh viên Công nghệ thông tin.">
-  <title>Sơn | Portfolio</title>
-  <link rel="preconnect" href="https://images.unsplash.com">
+  <meta name="description" content="DƯƠNG NHƯ PHONG SƠN — Ultra Luxury Diamond Portfolio. Kỹ sư Công nghệ thông tin tương lai, Trường Đại học Giao thông vận tải TP.HCM.">
+  <meta name="author" content="Dương Như Phong Sơn">
+  <meta property="og:title" content="Dương Như Phong Sơn | Royal Black Diamond & Gold Masterpiece">
+  <meta property="og:description" content="Không gian Portfolio cá nhân đỉnh cao: Black Diamond 3D, Champagne Gold & Haute Horlogerie.">
+  <meta property="og:type" content="website">
+  <title>DƯƠNG NHƯ PHONG SƠN | Royal Diamond Portfolio</title>
+  
+  <!-- HAUTE COUTURE LUXURY GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- THREE.JS FOR 3D DIAMOND WEBGL -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
-<body>
-  <header class="header"><nav class="wrap nav" aria-label="Điều hướng chính">
-    <a class="brand" href="#home">Sơn<span>.</span></a>
-    <button class="menu-button" aria-expanded="false" aria-controls="navlinks" aria-label="Mở menu">☰</button>
-    <div class="navlinks" id="navlinks"><a href="#about">Giới thiệu</a><a href="#skills">Kỹ năng</a><a href="#projects">Dự án</a><a href="#education">Học vấn</a><a href="#contact">Liên hệ</a></div>
-  </nav></header>
-  <main>
-    <section class="hero wrap" id="home">
-      <div class="hero-content"><p class="eyebrow">PORTFOLIO / 2026</p><h1>Xin chào, mình là <em>Sơn.</em></h1>
-        <p class="lead">Sinh viên Công nghệ thông tin, yêu thích phát triển web và xây dựng những sản phẩm hữu ích.</p>
-        <div class="actions"><a class="btn primary" href="#projects">Xem dự án <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#contact">Liên hệ</a></div>
+<body class="locked">
+
+  <!-- ============================================================
+       0. LUXURY CURSOR & STARBURST SPARKLES
+       ============================================================ -->
+  <div class="cursor" id="cursor">
+    <div class="cursor-gem">✦</div>
+  </div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <canvas id="sparkleCanvas" class="sparkle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       0. THREE.JS 3D DIAMONDS & GOLD DUST UNIVERSE
+       ============================================================ -->
+  <canvas id="threeCanvas" class="three-canvas" aria-hidden="true"></canvas>
+  <div class="cinematic-veil" aria-hidden="true"></div>
+  <div class="gold-ambient-aurora" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       1. ROYAL CINEMATIC WELCOME SCREEN
+       ============================================================ -->
+  <div class="intro-screen" id="introScreen" aria-label="Màn hình chào vương giả">
+    <div class="intro-bg-mesh"></div>
+    <div class="shimmer-sweep-layer"></div>
+
+    <div class="intro-content" id="introContent">
+      <!-- Sacred Geometry Royal Crest -->
+      <div class="sacred-crest-wrapper">
+        <div class="sacred-outer-ring"></div>
+        <div class="sacred-middle-octa"></div>
+        <div class="sacred-inner-circle">
+          <span class="crest-monogram">DPS</span>
+        </div>
+        <span class="crest-jewel jewel-t">✦</span>
+        <span class="crest-jewel jewel-r">✦</span>
+        <span class="crest-jewel jewel-b">✦</span>
+        <span class="crest-jewel jewel-l">✦</span>
       </div>
-      <div class="hero-art"><img class="hero-photo" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85" alt="Không gian làm việc lập trình với máy tính và mã nguồn"><div class="photo-caption"><span class="caption-dot"></span> BUILDING SOMETHING USEFUL</div></div>
+
+      <p class="intro-badge">HAUTE EXCELLENCE &bull; ROYAL BLACK DIAMOND</p>
+      
+      <h1 class="intro-title">
+        <span class="intro-title-line">DƯƠNG NHƯ</span>
+        <span class="intro-title-line gold-shine-lux">PHONG SƠN</span>
+      </h1>
+      
+      <p class="intro-motto">The Pinnacle of Craftsmanship &bull; Software &bull; Information Technology &bull; UTH TP.HCM</p>
+      
+      <div class="intro-action">
+        <button class="royal-enter-btn" id="enterButton" type="button">
+          <span class="flowing-border"></span>
+          <span class="btn-text-lux">
+            <span class="btn-diamond-icon">❖</span>
+            <span>ENTER THE EXPERIENCE</span>
+            <span class="btn-arrow-lux">⟶</span>
+          </span>
+          <span class="btn-light-sweep"></span>
+        </button>
+      </div>
+
+      <div class="intro-footnote">
+        <span class="footnote-dot"></span>
+        <span>HIGH FIDELITY SOUNDTRACK ACTIVE ON ENTER</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       2. HAUTE NAVIGATION BAR
+       ============================================================ -->
+  <header class="header" id="mainHeader">
+    <div class="header-laser-line"></div>
+    <nav class="wrap nav" aria-label="Điều hướng chính">
+      <a class="brand" href="#home">
+        <div class="brand-crest-box">
+          <span class="brand-initials">DPS</span>
+          <div class="crest-box-glow"></div>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">PHONG SƠN<span class="brand-gem-star">✦</span></span>
+          <span class="brand-edition-tag">BLACK DIAMOND &bull; ROYAL ARCHIVE</span>
+        </div>
+      </a>
+
+      <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navlinks" aria-label="Mở menu">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+
+      <div class="navlinks" id="navlinks">
+        <a href="#home" class="nav-item active" data-section="home">
+          <span class="nav-idx">I</span><span class="nav-label">Home</span>
+        </a>
+        <a href="#about" class="nav-item" data-section="about">
+          <span class="nav-idx">II</span><span class="nav-label">Giới Thiệu</span>
+        </a>
+        <a href="#skills" class="nav-item" data-section="skills">
+          <span class="nav-idx">III</span><span class="nav-label">Kỹ Năng</span>
+        </a>
+        <a href="#projects" class="nav-item" data-section="projects">
+          <span class="nav-idx">IV</span><span class="nav-label">Dự Án</span>
+        </a>
+        <a href="#education" class="nav-item" data-section="education">
+          <span class="nav-idx">V</span><span class="nav-label">Học Vấn</span>
+        </a>
+        <a href="#contact" class="nav-item" data-section="contact">
+          <span class="nav-idx">VI</span><span class="nav-label">Liên Hệ</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- ============================================================
+         3. HERO SECTION (MASTERPIECE DIAMOND PEDESTAL)
+         ============================================================ -->
+    <section class="hero" id="home">
+      <div class="hero-aurora-orb"></div>
+      <div class="wrap hero-wrap">
+        
+        <div class="hero-text-block">
+          <div class="royal-insignia-pill" data-aos="fade-down">
+            <span class="insignia-gem">❖</span>
+            <span class="insignia-text">OFFICIAL CURRICULUM VITAE &bull; 2026</span>
+          </div>
+
+          <h1 class="hero-master-title" data-aos="fade-up" data-aos-delay="100">
+            <span class="master-intro">Xin chào, mình là</span>
+            <strong class="master-name gold-shine-lux" id="heroName">DƯƠNG NHƯ PHONG SƠN</strong>
+          </h1>
+
+          <div class="hero-typing-pod" data-aos="fade-up" data-aos-delay="150">
+            <span class="typing-prefix">ĐỊNH VỊ CHUYÊN MÔN //</span>
+            <span class="typing-output" id="typingText"></span>
+            <span class="typing-gem-caret">✦</span>
+          </div>
+
+          <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+            Sinh viên chuyên ngành <strong>Công nghệ thông tin</strong> tại 
+            <strong>Trường Đại học Giao thông vận tải TP.HCM</strong> (khóa học 2024&ndash;2028). 
+            Kiến tạo phần mềm với tư duy chuẩn mực, cấu trúc dữ liệu tối ưu và thẩm mỹ đỉnh cao.
+          </p>
+
+          <div class="hero-btn-group" data-aos="fade-up" data-aos-delay="250">
+            <a class="btn-royal btn-royal-gold magnetic-btn" href="#projects">
+              <span class="btn-flowing-border"></span>
+              <span class="btn-inner-content">
+                <span>CHIÊM NGƯỠNG DỰ ÁN</span>
+                <span class="btn-arrow-icon">⟶</span>
+              </span>
+              <span class="btn-shine-sweep"></span>
+            </a>
+            
+            <a class="btn-royal btn-royal-obsidian magnetic-btn" href="#contact">
+              <span class="btn-inner-content">
+                <span>KẾT NỐI TRỰC TIẾP</span>
+                <span class="btn-gem-point">✦</span>
+              </span>
+            </a>
+          </div>
+
+          <!-- Luxury Metric Counters -->
+          <div class="hero-stats-row" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-box-lux">
+              <span class="stat-number gold-shine-lux" data-count="5">0</span>
+              <span class="stat-desc">DỰ ÁN XÂY DỰNG</span>
+            </div>
+            <div class="stat-divider-gem">❖</div>
+            <div class="stat-box-lux">
+              <span class="stat-number gold-shine-lux" data-count="10">0</span>
+              <span class="stat-desc">CÔNG NGHỆ CHỦ LỰC</span>
+            </div>
+            <div class="stat-divider-gem">❖</div>
+            <div class="stat-box-lux">
+              <span class="stat-number gold-shine-lux" data-count="1">0</span>
+              <span class="stat-desc">NĂM TÍCH LŨY THỰC CHIẾN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HAUTE HORLOGERIE DIAMOND AVATAR PEDESTAL -->
+        <div class="hero-display-block" data-aos="zoom-in" data-aos-delay="200">
+          <div class="pedestal-stage">
+            
+            <!-- Concentric Laser Halo Rings -->
+            <div class="laser-ring ring-outer"></div>
+            <div class="laser-ring ring-mid"></div>
+            <div class="laser-ring ring-inner"></div>
+
+            <!-- 4 Corner Royal Jewels -->
+            <div class="pedestal-gem gem-top">❖</div>
+            <div class="pedestal-gem gem-right">❖</div>
+            <div class="pedestal-gem gem-bottom">❖</div>
+            <div class="pedestal-gem gem-left">❖</div>
+
+            <!-- Diamond Bezel Frame with Personal Avatar -->
+            <div class="diamond-bezel-frame" id="avatarBox">
+              <div class="bezel-inner-casing">
+                <img 
+                  id="userAvatar" 
+                  class="personal-portrait" 
+                  src="assets/images/avatar.jpg" 
+                  alt="Dương Như Phong Sơn"
+                  onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';"
+                >
+                <div class="avatar-fallback" id="avatarFallback" style="display:none;">
+                  <span class="fb-monogram">DPS</span>
+                  <span class="fb-name">PHONG SƠN</span>
+                </div>
+                <div class="portrait-light-beam"></div>
+              </div>
+              <div class="bezel-glass-glare"></div>
+            </div>
+
+            <!-- Status Crown -->
+            <div class="pedestal-status-crown">
+              <span class="status-pulsar"></span>
+              <span class="status-title">OPEN FOR ELITE OPPORTUNITIES</span>
+            </div>
+
+            <!-- Floating Haute Crystal Badges -->
+            <div class="crystal-card crystal-top-right">
+              <div class="crystal-icon">💎</div>
+              <div>
+                <strong class="crystal-title">Software Craft</strong>
+                <small class="crystal-sub">Scalable Architecture</small>
+              </div>
+            </div>
+
+            <div class="crystal-card crystal-bottom-left">
+              <div class="crystal-icon">⚜️</div>
+              <div>
+                <strong class="crystal-title">Database Systems</strong>
+                <small class="crystal-sub">Relational &amp; High Integrity</small>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#about" class="scroll-explore" aria-label="Cuộn xuống để khám phá">
+        <span class="explore-gem">❖</span>
+        <span class="explore-label">EXPLORE ARCHIVE</span>
+        <span class="explore-laser"></span>
+      </a>
     </section>
-    <section class="section section-alt" id="about"><div class="wrap two-col"><div><p class="eyebrow">01 / GIỚI THIỆU</p><h2>Về bản thân</h2></div><div><p>Mình đang theo học ngành <strong>Công nghệ thông tin</strong> tại <strong>Trường Đại học Giao thông vận tải TP. Hồ Chí Minh</strong>.</p><p>Mình quan tâm đến lập trình web, cơ sở dữ liệu và phát triển phần mềm. Mình thích học thông qua dự án và luôn cố gắng cải thiện kỹ năng từng ngày.</p></div></div></section>
-    <section class="section wrap" id="skills"><p class="eyebrow">02 / KỸ NĂNG</p><h2>Công nghệ đang học</h2><div class="skills"><div><h3>Ngôn ngữ</h3><p>Python · C++ · Java · JavaScript</p></div><div><h3>Web</h3><p>HTML · CSS · Flask · REST API</p></div><div><h3>Cơ sở dữ liệu</h3><p>MySQL · SQLite · PostgreSQL</p></div><div><h3>Công cụ</h3><p>Git · GitHub · VS Code</p></div></div></section>
-    <section class="section section-alt" id="projects"><div class="wrap"><p class="eyebrow">03 / DỰ ÁN</p><h2>Dự án tiêu biểu</h2><div class="projects">
-      <article class="project"><img class="project-image" src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1000&q=85" alt="Thú cưng tại phòng khám thú y" loading="lazy"><div class="project-body"><div class="project-top"><span>01</span><span>WEB APPLICATION</span></div><h3>Quản lý phòng khám thú y</h3><p>Website giới thiệu dịch vụ, hỗ trợ đặt lịch khám và quản lý lịch hẹn.</p><div class="tags"><span>Flask</span><span>Python</span><span>SQLite</span></div><a href="https://website-quan-li-thu-y.onrender.com" target="_blank" rel="noopener noreferrer">Xem website ↗</a></div></article>
-      <article class="project"><img class="project-image" src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=1000&q=85" alt="Nấm đang phát triển trong môi trường trồng" loading="lazy"><div class="project-body"><div class="project-top"><span>02</span><span>IOT / WEB</span></div><h3>Quản lý trồng nấm thông minh</h3><p>Dự án học tập hướng đến theo dõi môi trường trồng nấm và quản lý dữ liệu cảm biến.</p><div class="tags"><span>Node.js</span><span>React</span><span>PostgreSQL</span></div><span class="project-status">Dự án học tập</span></div></article>
-    </div></div></section>
-    <section class="section wrap" id="education"><p class="eyebrow">04 / HỌC VẤN</p><h2>Hành trình học tập</h2><div class="education"><span class="year">2024 — 2028 <small>(dự kiến)</small></span><div><h3>Đại học Giao thông vận tải TP. Hồ Chí Minh</h3><p>Ngành Công nghệ thông tin</p></div></div></section>
-    <section class="section contact" id="contact"><div class="wrap contact-inner"><div><p class="eyebrow">05 / LIÊN HỆ</p><h2>Kết nối với mình</h2><p>Quan tâm đến dự án hoặc muốn trao đổi về lập trình? Hãy liên hệ qua các kênh bên cạnh.</p></div><div class="contact-links"><a href="https://github.com/FONGSOWN" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><a href="mailto:dohello365@gmail.com">Email <strong>dohello365@gmail.com</strong><span>↗</span></a></div></div></section>
+
+    <!-- ============================================================
+         4. ABOUT SECTION (ROYAL DOSSIER)
+         ============================================================ -->
+    <section class="section section-about" id="about">
+      <div class="wrap">
+        
+        <div class="section-crest-header" data-aos="fade-up">
+          <p class="section-tag-gold">DOSSIER // 01 &bull; TIỂU SỬ &amp; HỌC THUẬT</p>
+          <h2 class="section-royal-title">XUẤT THÂN &amp; TẦM NHÌN CHUYÊN MÔN</h2>
+          <div class="gold-separator"><span>❖</span></div>
+        </div>
+
+        <div class="dossier-grid">
+          
+          <div class="dossier-card dossier-main" data-aos="fade-right">
+            <div class="card-laser-rim"></div>
+            <div class="card-gold-crest-mark">DPS</div>
+            
+            <h3 class="dossier-headline">Kỹ sư Công nghệ Thông tin tương lai</h3>
+            
+            <p>
+              Mình là <strong>DƯƠNG NHƯ PHONG SƠN</strong>, sinh viên chuyên ngành <strong>Công nghệ thông tin</strong> 
+              tại <strong>Trường Đại học Giao thông vận tải TP. Hồ Chí Minh</strong> (niên khóa 2024 &ndash; 2028).
+            </p>
+            <p>
+              Tâm niệm rằng mỗi dòng lệnh, mỗi bảng cơ sở dữ liệu và từng điểm ảnh đều phải được tôi luyện với sự tỉ mỉ của nghệ nhân kim hoàn. Không chỉ xây dựng phần mềm chạy được, mà phải tạo ra những giải pháp ổn định, bảo mật và thẩm mỹ vượt bậc.
+            </p>
+            <p>
+              Tập trung chuyên sâu vào kiến trúc Backend hiệu năng cao, xây dựng ứng dụng web hiện đại và tích hợp phần cứng thông minh IoT ứng dụng vào đời sống.
+            </p>
+
+            <div class="dossier-spec-row">
+              <div class="spec-pod">
+                <span class="spec-ico">🏛️</span>
+                <div>
+                  <strong>Trường ĐH Giao thông vận tải TP.HCM</strong>
+                  <small>Ngành Công nghệ thông tin (2024 &ndash; 2028)</small>
+                </div>
+              </div>
+              <div class="spec-pod">
+                <span class="spec-ico">💻</span>
+                <div>
+                  <strong>Định hướng dài hạn</strong>
+                  <small>Full-Stack Software Engineer &bull; System Architect</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="dossier-action-row">
+              <a href="https://github.com/FONGSOWN" target="_blank" rel="noopener noreferrer" class="btn-royal btn-royal-obsidian btn-sm">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                <span>GITHUB: FONGSOWN</span>
+              </a>
+              <a href="mailto:dohello365@gmail.com" class="btn-royal btn-royal-obsidian btn-sm">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+                <span>GỬI THƯ ĐIỆN TỬ</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Chronology Timeline -->
+          <div class="dossier-card dossier-timeline" data-aos="fade-left" data-aos-delay="100">
+            <h4 class="timeline-title-gold">TIẾN TRÌNH HỌC TẬP &amp; PHÁT TRIỂN</h4>
+            
+            <div class="royal-timeline">
+              
+              <div class="rt-node">
+                <div class="rt-gem">❖</div>
+                <div class="rt-content">
+                  <span class="rt-date">2024</span>
+                  <h5>Gia Nhập UTH TP.HCM</h5>
+                  <p>Trúng tuyển ngành Công nghệ thông tin; xây dựng nền tảng tư duy giải thuật và cấu trúc máy tính.</p>
+                </div>
+              </div>
+
+              <div class="rt-node">
+                <div class="rt-gem">❖</div>
+                <div class="rt-content">
+                  <span class="rt-date">2024 &ndash; 2025</span>
+                  <h5>Khoa Học Máy Tính &amp; CSDL</h5>
+                  <p>Chinh phục lập trình OOP với C++, Java, Python; thiết kế và chuẩn hóa hệ thống cơ sở dữ liệu quan hệ.</p>
+                </div>
+              </div>
+
+              <div class="rt-node">
+                <div class="rt-gem">❖</div>
+                <div class="rt-content">
+                  <span class="rt-date">2025 &ndash; 2026</span>
+                  <h5>Phần Mềm Thực Chiến &amp; Triển Khai Cloud</h5>
+                  <p>Phát triển website quản lý phòng khám thú y, ứng dụng IoT nông nghiệp thông minh và triển khai trực tuyến.</p>
+                </div>
+              </div>
+
+              <div class="rt-node rt-future">
+                <div class="rt-gem gem-future">✧</div>
+                <div class="rt-content">
+                  <span class="rt-date">2028 (DỰ KIẾN)</span>
+                  <h5>Tốt Nghiệp Kỹ Sư CNTT</h5>
+                  <p>Chính thức nhận bằng Kỹ sư Công nghệ thông tin, sẵn sàng tham gia các dự án công nghệ cao cấp.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. SKILLS SECTION (DIAMOND FACETED VAULT)
+         ============================================================ -->
+    <section class="section section-skills" id="skills">
+      <div class="wrap">
+        
+        <div class="section-crest-header" data-aos="fade-up">
+          <p class="section-tag-gold">ARSENAL // 02 &bull; VŨ KHÍ CÔNG NGHỆ</p>
+          <h2 class="section-royal-title">KỸ THUẬT &amp; NỀN TẢNG NĂNG LỰC</h2>
+          <div class="gold-separator"><span>❖</span></div>
+          <p class="section-sub-italic">Không sử dụng các chỉ số ảo; phân loại minh bạch theo năng lực thực tiễn.</p>
+        </div>
+
+        <div class="haute-skills-grid">
+          
+          <div class="skill-facet-box" data-aos="zoom-in" data-aos-delay="0">
+            <div class="facet-shimmer-border"></div>
+            <div class="facet-top-row">
+              <span class="facet-emblem">🐍</span>
+              <span class="facet-grade">CORE PILLAR</span>
+            </div>
+            <h3 class="facet-heading">Python</h3>
+            <p class="facet-text">Lập trình hướng đối tượng, xử lý dữ liệu, scripting tự động hóa, cấu trúc thuật toán và phát triển web backend.</p>
+            <div class="facet-tags"><span>OOP</span><span>Data Logic</span><span>Automation</span></div>
+          </div>
+
+          <div class="skill-facet-box" data-aos="zoom-in" data-aos-delay="50">
+            <div class="facet-shimmer-border"></div>
+            <div class="facet-top-row">
+              <span class="facet-emblem">⚡</span>
+              <span class="facet-grade">HIGH PERFORMANCE</span>
+            </div>
+            <h3 class="facet-heading">C / C++</h3>
+            <p class="facet-text">Quản lý bộ nhớ tối ưu, con trỏ (pointers), cấu trúc dữ liệu và giải thuật phức tạp, nền tảng tính toán hiệu năng cao.</p>
+            <div class="facet-tags"><span>Memory</span><span>Data Structures</span><span>Algorithms</span></div>
+          </div>
+
+          <div class="skill-facet-box" data-aos="zoom-in" data-aos-delay="100">
+            <div class="facet-shimmer-border"></div>
+            <div class="facet-top-row">
+              <span class="facet-emblem">☕</span>
+              <span class="facet-grade">ENTERPRISE</span>
+            </div>
+            <h3 class="facet-heading">Java</h3>
+            <p class="facet-text">Thiết kế phân lớp hướng đối tượng, nguyên lý Clean Architecture, lập trình đa luồng và cấu trúc modular bền vững.</p>
+            <div class="facet-tags"><span>OOP</span><span>Collections</span><span>Multithreading</span></div>
+          </div>
+
+          <div class="skill-facet-box" data-aos="zoom-in" data-aos-delay="150">
+            <div class="facet-shimmer-border"></div>
+            <div class="facet-top-row">
+              <span class="facet-emblem">🌐</span>
+              <span class="facet-grade">INTERACTIVE</span>
+            </div>
+            <h3 class="facet-heading">JavaScript (ES6+)</h3>
+            <p class="facet-text">Xử lý bất đồng bộ (Async/Await, Promises), thao tác DOM tối ưu tốc độ khung hình, xây dựng hoạt họa chuyển động mượt mà.</p>
+            <div class="facet-tags"><span>Async/Await</span><span>DOM API</span><span>Modern JS</span></div>
+          </div>
+
+          <div class="skill-facet-box" data-aos="zoom-in" data-aos-delay="0">
+            <div class="facet-shimmer-border"></div>
+            <div class="facet-top-row">
+              <span class="facet-emblem">🏛️</span>
+              <span class="facet-grade">STORAGE &amp; ARCHITECTURE</span>
+            </div>
+            <h3 class="facet-heading">Cơ sở dữ liệu (SQL)</h3>
+            <p class="facet-text">Thiết kế lược đồ quan hệ chuẩn hóa 3NF/BCNF, thiết lập Indexes, Stored Procedures, tối ưu truy vấn trên MySQL, PostgreSQL và SQLite.</p>
+            <div class="facet-tags"><span>MySQL</span><span>PostgreSQL</span><span>SQLite</span></div>
+          </div>
+
+          <div class="skill-facet-box" data-aos="zoom-in" data-aos-delay="50">
+            <div class="facet-shimmer-border"></div>
+            <div class="facet-top-row">
+              <span class="facet-emblem">⚙️</span>
+              <span class="facet-grade">FRAMEWORK</span>
+            </div>
+            <h3 class="facet-heading">Flask &amp; RESTful API</h3>
+            <p class="facet-text">Xây dựng dịch vụ backend Python tinh gọn, định tuyến RESTful, kiểm soát dữ liệu đầu vào và tích hợp cơ sở dữ liệu quan hệ.</p>
+            <div class="facet-tags"><span>Flask</span><span>RESTful API</span><span>JSON Endpoints</span></div>
+          </div>
+
+          <div class="skill-facet-box" data-aos="zoom-in" data-aos-delay="100">
+            <div class="facet-shimmer-border"></div>
+            <div class="facet-top-row">
+              <span class="facet-emblem">🎨</span>
+              <span class="facet-grade">STYLING &amp; LAYOUT</span>
+            </div>
+            <h3 class="facet-heading">HTML5 &amp; Advanced CSS</h3>
+            <p class="facet-text">Semantic HTML chuẩn SEO, Flexbox &amp; Grid nâng cao, Responsive mọi độ phân giải và thiết kế hiệu ứng hoạt họa tinh xảo.</p>
+            <div class="facet-tags"><span>Semantic</span><span>CSS Grid</span><span>Animations</span></div>
+          </div>
+
+          <div class="skill-facet-box" data-aos="zoom-in" data-aos-delay="150">
+            <div class="facet-shimmer-border"></div>
+            <div class="facet-top-row">
+              <span class="facet-emblem">📦</span>
+              <span class="facet-grade">WORKFLOW</span>
+            </div>
+            <h3 class="facet-heading">Git &amp; GitHub</h3>
+            <p class="facet-text">Quản lý phiên bản mã nguồn chuyên nghiệp, quy trình phân nhánh (Git Flow), cộng tác mã nguồn mở và kiểm thử liên tục.</p>
+            <div class="facet-tags"><span>Git CLI</span><span>GitHub</span><span>Version Control</span></div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. PROJECTS SECTION (HAUTE GALLERY)
+         ============================================================ -->
+    <section class="section section-projects" id="projects">
+      <div class="wrap">
+        
+        <div class="section-crest-header" data-aos="fade-up">
+          <p class="section-tag-gold">SHOWCASE // 03 &bull; TÁC PHẨM THỰC THI</p>
+          <h2 class="section-royal-title">DỰ ÁN XÂY DỰNG TIÊU BIỂU</h2>
+          <div class="gold-separator"><span>❖</span></div>
+          <p class="section-sub-italic">Không dùng liên kết ảo; toàn bộ dự án đều minh bạch mã nguồn hoặc liên kết trực tuyến.</p>
+        </div>
+
+        <div class="master-projects-grid">
+
+          <!-- PROJECT 01 -->
+          <article class="master-project-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="card-flowing-border"></div>
+            <div class="card-mouse-spotlight"></div>
+            
+            <div class="project-show-figure">
+              <img 
+                class="project-figure-img" 
+                src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1000&q=85" 
+                alt="Website quản lý Trung tâm Thú y"
+                loading="lazy"
+              >
+              <div class="figure-shade-mask"></div>
+              <span class="project-royal-seal">DEPLOYED LIVE</span>
+            </div>
+
+            <div class="project-info-pod">
+              <div class="project-meta-top">
+                <span class="project-index-gold">COLLECTION // 01</span>
+                <span class="project-type-tag">FULL-STACK WEB APPLICATION</span>
+              </div>
+
+              <h3 class="project-royal-name">Hệ Thống Quản Lý Phòng Khám Thú Y</h3>
+
+              <p class="project-royal-desc">
+                Website giới thiệu dịch vụ phòng khám, đặt lịch hẹn kiểm tra sức khỏe thú cưng thông minh và quản lý dữ liệu lịch khám một cách trực quan, chính xác.
+              </p>
+
+              <div class="project-chips-row">
+                <span>Python Flask</span>
+                <span>SQLite DB</span>
+                <span>HTML5 / CSS3</span>
+                <span>Render Cloud</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <a 
+                  href="https://website-quan-li-thu-y.onrender.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn-royal btn-royal-gold btn-xs"
+                >
+                  <span>LIVE DEMO ↗</span>
+                </a>
+                <a 
+                  href="https://github.com/FONGSOWN" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn-royal btn-royal-obsidian btn-xs"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                  <span>MÃ NGUỒN</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 02 -->
+          <article class="master-project-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-flowing-border"></div>
+            <div class="card-mouse-spotlight"></div>
+            
+            <div class="project-show-figure">
+              <img 
+                class="project-figure-img" 
+                src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=1000&q=85" 
+                alt="Hệ thống quản lý trồng nấm thông minh IoT"
+                loading="lazy"
+              >
+              <div class="figure-shade-mask"></div>
+              <span class="project-royal-seal seal-dev">IOT RESEARCH</span>
+            </div>
+
+            <div class="project-info-pod">
+              <div class="project-meta-top">
+                <span class="project-index-gold">COLLECTION // 02</span>
+                <span class="project-type-tag">IOT &bull; HARDWARE INTELLIGENCE</span>
+              </div>
+
+              <h3 class="project-royal-name">Quản Lý Trồng Nấm Thông Minh IoT</h3>
+
+              <p class="project-royal-desc">
+                Nghiên cứu hệ thống thu thập thông số môi trường (nhiệt độ, độ ẩm không khí, độ ẩm giá thể) bằng cảm biến chuyên dụng và phân tích dữ liệu trên bảng điều khiển.
+              </p>
+
+              <div class="project-chips-row">
+                <span>IoT Sensors</span>
+                <span>Python Microservice</span>
+                <span>PostgreSQL</span>
+                <span>Analytics</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <span class="project-status-note">Giai đoạn phát triển thử nghiệm</span>
+                <a 
+                  href="https://github.com/FONGSOWN" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn-royal btn-royal-obsidian btn-xs"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                  <span>GITHUB</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 03 -->
+          <article class="master-project-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-flowing-border"></div>
+            <div class="card-mouse-spotlight"></div>
+            
+            <div class="project-show-figure">
+              <img 
+                class="project-figure-img" 
+                src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1000&q=85" 
+                alt="Thiết kế và tối ưu cơ sở dữ liệu"
+                loading="lazy"
+              >
+              <div class="figure-shade-mask"></div>
+              <span class="project-royal-seal seal-db">DATA ENGINE</span>
+            </div>
+
+            <div class="project-info-pod">
+              <div class="project-meta-top">
+                <span class="project-index-gold">COLLECTION // 03</span>
+                <span class="project-type-tag">DATABASE ARCHITECTURE</span>
+              </div>
+
+              <h3 class="project-royal-name">Kiến Trúc &amp; Tối Ưu Cơ Sở Dữ Liệu</h3>
+
+              <p class="project-royal-desc">
+                Thiết kế mô hình dữ liệu quan hệ hoàn chỉnh, giải quyết bài toán toàn vẹn dữ liệu, xây dựng thủ tục lưu trữ (Stored Procedures) và chỉ mục nâng cao.
+              </p>
+
+              <div class="project-chips-row">
+                <span>MySQL Relational</span>
+                <span>Indexing</span>
+                <span>Stored Procedures</span>
+                <span>ERD Logic</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <span class="project-status-note">Đồ án môn học hoàn thiện</span>
+                <a 
+                  href="https://github.com/FONGSOWN" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="btn-royal btn-royal-obsidian btn-xs"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                  <span>GITHUB</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. EDUCATION SECTION (ACADEMIC PEDIGREE)
+         ============================================================ -->
+    <section class="section section-education" id="education">
+      <div class="wrap">
+        
+        <div class="section-crest-header" data-aos="fade-up">
+          <p class="section-tag-gold">ACADEMIA // 04 &bull; HỌC VẤN CHÍNH QUY</p>
+          <h2 class="section-royal-title">NỀN TẢNG KỸ SƯ CHÍNH QUY</h2>
+          <div class="gold-separator"><span>❖</span></div>
+        </div>
+
+        <div class="pedigree-monument-card" data-aos="zoom-in">
+          <div class="monument-laser-rim"></div>
+          
+          <div class="monument-crest-seal">
+            <span class="seal-emoji">🎓</span>
+            <span class="seal-star">✦</span>
+          </div>
+
+          <div class="monument-body">
+            <div class="monument-header-line">
+              <div>
+                <span class="univ-identity-tag">UNIVERSITY OF TRANSPORT AND COMMUNICATIONS &bull; HCMC</span>
+                <h3 class="univ-name-lux">Trường Đại học Giao thông vận tải TP. Hồ Chí Minh</h3>
+                <p class="degree-royal-title">HỆ CHÍNH QUY &bull; CÔNG NGHỆ THÔNG TIN</p>
+              </div>
+
+              <div class="period-chronometer">
+                <span class="chrono-gem">❖</span>
+                <div>
+                  <strong class="chrono-span">2024 &ndash; 2028</strong>
+                  <small class="chrono-sub">DỰ KIẾN TỐT NGHIỆP</small>
+                </div>
+              </div>
+            </div>
+
+            <p class="monument-narrative">
+              Theo đuổi chương trình đào tạo kỹ sư dài hạn với các bộ môn chuyên sâu về cấu trúc dữ liệu, giải thuật nâng cao, hệ điều hành, phân tích thiết kế hệ thống và phát triển phần mềm chuẩn quốc tế.
+            </p>
+
+            <div class="curriculum-badges-row">
+              <span class="curr-badge">Lập trình hướng đối tượng</span>
+              <span class="curr-badge">Toán rời rạc &amp; Thuật toán</span>
+              <span class="curr-badge">Quản trị CSDL quan hệ</span>
+              <span class="curr-badge">Kiến trúc mạng &amp; Hệ điều hành</span>
+              <span class="curr-badge">Kỹ thuật Web hiện đại</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. CONTACT SECTION (VIP CONCIERGE)
+         ============================================================ -->
+    <section class="section section-contact" id="contact">
+      <div class="wrap">
+        
+        <div class="section-crest-header" data-aos="fade-up">
+          <p class="section-tag-gold">CONCIERGE // 05 &bull; KẾT NỐI TRỰC TIẾP</p>
+          <h2 class="section-royal-title">LIÊN HỆ &amp; HỢP TÁC KỸ THUẬT</h2>
+          <div class="gold-separator"><span>❖</span></div>
+          <p class="section-sub-italic">Sẵn sàng trao đổi cơ hội thực tập, dự án phần mềm và hợp tác chuyên môn.</p>
+        </div>
+
+        <div class="concierge-grid">
+          
+          <div class="concierge-channels-col" data-aos="fade-right">
+            
+            <a href="mailto:dohello365@gmail.com" class="concierge-link-card magnetic-btn">
+              <div class="link-gem-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+              </div>
+              <div class="link-label-group">
+                <span class="link-scope">THƯ ĐIỆN TỬ CHÍNH THỨC</span>
+                <strong class="link-destination">dohello365@gmail.com</strong>
+              </div>
+              <span class="link-vector">⟶</span>
+            </a>
+
+            <a href="https://github.com/FONGSOWN" target="_blank" rel="noopener noreferrer" class="concierge-link-card magnetic-btn">
+              <div class="link-gem-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              </div>
+              <div class="link-label-group">
+                <span class="link-scope">KHO MÃ NGUỒN CÁ NHÂN</span>
+                <strong class="link-destination">github.com/FONGSOWN</strong>
+              </div>
+              <span class="link-vector">⟶</span>
+            </a>
+
+            <div class="concierge-loc-card">
+              <span class="loc-star">❖</span>
+              <div>
+                <strong>TP. HỒ CHÍ MINH, VIỆT NAM</strong>
+                <small>Hỗ trợ làm việc Trực tiếp (On-site) hoặc Từ xa (Remote)</small>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="concierge-invitation-card" data-aos="fade-left" data-aos-delay="100">
+            <div class="invitation-crest">❖</div>
+            <h3 class="invitation-heading">KHỞI ĐẦU DỰ ÁN MỚI CÙNG NHAU</h3>
+            <p class="invitation-subtext">
+              Bạn đang có ý tưởng phần mềm đột phá hoặc tìm kiếm nhân sự tiềm năng cho đội ngũ công nghệ? 
+              Hãy liên hệ ngay, mình luôn sẵn lòng đón nhận và phản hồi nhanh chóng.
+            </p>
+            <a href="mailto:dohello365@gmail.com" class="btn-royal btn-royal-gold btn-full-width">
+              <span>GỬI YÊU CẦU TRAO ĐỔI</span>
+              <span class="btn-arrow-icon">⟶</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
   </main>
-  <footer class="footer"><div class="wrap"><span>© <span id="year">2026</span> Sơn</span><span>Designed with simplicity.</span></div></footer>
-</body></html>
+
+  <!-- ============================================================
+       9. ROYAL FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-monogram-box">
+        <span class="ft-crest">DPS</span>
+        <div>
+          <span class="ft-title">DƯƠNG NHƯ PHONG SƠN</span>
+          <span class="ft-tag">&bull; ULTRA LUXURY DIAMOND PORTFOLIO</span>
+        </div>
+      </div>
+
+      <div class="footer-copy-box">
+        <span>&copy; <span id="year">2026</span> &bull; Bản quyền thuộc về Dương Như Phong Sơn &bull; UTH TP.HCM</span>
+      </div>
+
+      <div class="footer-action-box">
+        <a href="#home" class="royal-back-top-btn" id="backToTop" aria-label="Cuộn về đầu trang">
+          <span>LÊN ĐẦU TRANG</span>
+          <span class="top-glyph">↑</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       10. ULTRA LUXURY DIAMOND MUSIC PLAYER
+       ============================================================ -->
+  <aside class="music-player" id="musicPlayer" aria-label="Trình phát nhạc thượng lưu">
+    <div class="mp-laser-rim"></div>
+    
+    <div class="mp-main">
+      <!-- Gem Turntable Vinyl -->
+      <div class="mp-cover-wrap">
+        <div class="mp-cover" id="mpCover">
+          <div class="mp-cover-art" id="mpCoverArt">
+            <div class="mp-gem-disc">❖</div>
+          </div>
+          <div class="mp-cover-spin" id="mpCoverSpin"></div>
+        </div>
+      </div>
+
+      <!-- Information & Controls -->
+      <div class="mp-body">
+        <div class="mp-info">
+          <span class="mp-artist" id="mpArtist">BÌNH GOLD ft. SHADY</span>
+          <strong class="mp-title" id="mpTitle">Ông Bà Già Tao Lo Hết</strong>
+        </div>
+
+        <!-- Gold Progress Bar -->
+        <div class="mp-progress-wrap">
+          <span class="mp-time" id="mpCurrentTime">0:00</span>
+          <div class="mp-progress-bar" id="mpProgressBar" role="slider" aria-label="Tiến trình bài hát" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+            <div class="mp-progress-fill" id="mpProgressFill"></div>
+            <div class="mp-progress-thumb" id="mpProgressThumb"></div>
+          </div>
+          <span class="mp-time" id="mpDuration">0:00</span>
+        </div>
+
+        <!-- Controls Row -->
+        <div class="mp-controls">
+          <button class="mp-btn mp-btn-sm" id="mpPrev" aria-label="Bài trước" title="Bài trước">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+          </button>
+          
+          <button class="mp-btn mp-btn-play" id="mpPlay" aria-label="Phát nhạc" title="Phát/Tạm dừng">
+            <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          
+          <button class="mp-btn mp-btn-sm" id="mpNext" aria-label="Bài tiếp" title="Bài tiếp theo">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6h-2v12h2V6zM6.5 18L15 12 6.5 6z"/></svg>
+          </button>
+
+          <!-- Volume Controller -->
+          <div class="mp-volume-wrap">
+            <button class="mp-btn mp-btn-sm mp-mute" id="mpMute" aria-label="Tắt tiếng" title="Tắt/Bật tiếng">
+              <svg class="icon-vol" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+              <svg class="icon-mute" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+            </button>
+            <input type="range" class="mp-volume" id="mpVolume" min="0" max="1" step="0.05" value="0.8" aria-label="Âm lượng">
+          </div>
+        </div>
+
+        <!-- Gold Equalizer Bars -->
+        <div class="mp-eq" id="mpEq" aria-hidden="true">
+          <div class="eq-col"></div>
+          <div class="eq-col"></div>
+          <div class="eq-col"></div>
+          <div class="eq-col"></div>
+          <div class="eq-col"></div>
+          <div class="eq-col"></div>
+          <div class="eq-col"></div>
+          <div class="eq-col"></div>
+        </div>
+      </div>
+
+      <!-- Playlist Vault Toggle -->
+      <button class="mp-playlist-toggle" id="mpPlaylistToggle" aria-expanded="false" title="Mở danh sách bài hát">
+        <span class="pl-gem-glyph">❖</span>
+      </button>
+    </div>
+
+    <!-- Dropdown Playlist Vault -->
+    <div class="mp-playlist" id="mpPlaylist" hidden>
+      <div class="mp-playlist-header">
+        <span>HAUTE AUDIO REPERTOIRE</span>
+        <span class="pl-counter">4 TRACKS</span>
+      </div>
+
+      <button class="mp-track active" data-index="3">
+        <span class="mp-track-num">01</span>
+        <div class="mp-track-info">
+          <span class="mp-track-name">Ông Bà Già Tao Lo Hết</span>
+          <span class="mp-track-artist">BÌNH GOLD ft. SHADY</span>
+        </div>
+        <span class="mp-track-status">
+          <span class="mp-eq-mini"><span></span><span></span><span></span></span>
+        </span>
+      </button>
+
+      <button class="mp-track" data-index="0">
+        <span class="mp-track-num">02</span>
+        <div class="mp-track-info">
+          <span class="mp-track-name">Em Của Ngày Hôm Qua</span>
+          <span class="mp-track-artist">Sơn Tùng M-TP</span>
+        </div>
+        <span class="mp-track-status">–</span>
+      </button>
+
+      <button class="mp-track" data-index="1">
+        <span class="mp-track-num">03</span>
+        <div class="mp-track-info">
+          <span class="mp-track-name">Nắng Ấm Xa Dần</span>
+          <span class="mp-track-artist">Sơn Tùng M-TP</span>
+        </div>
+        <span class="mp-track-status">–</span>
+      </button>
+
+      <button class="mp-track" data-index="2">
+        <span class="mp-track-num">04</span>
+        <div class="mp-track-info">
+          <span class="mp-track-name">Hãy Trao Cho Anh</span>
+          <span class="mp-track-artist">Sơn Tùng M-TP &bull; Snoop Dogg</span>
+        </div>
+        <span class="mp-track-status">–</span>
+      </button>
+
+      <p class="mp-notice" id="mpNotice"></p>
+    </div>
+
+    <!-- HTML5 Audio Core -->
+    <audio id="audioPlayer" preload="auto"></audio>
+  </aside>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
