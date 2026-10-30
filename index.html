@@ -817,9 +817,9 @@
   </footer>
 
   <!-- ============================================================
-       10. ULTRA LUXURY DIAMOND MUSIC PLAYER
+       10. ULTRA LUXURY DIAMOND MUSIC PLAYER (HIDDEN UI)
        ============================================================ -->
-  <aside class="music-player" id="musicPlayer" aria-label="Trình phát nhạc thượng lưu">
+  <aside class="music-player" id="musicPlayer" aria-label="Trình phát nhạc thượng lưu" style="display: none !important;" hidden>
     <div class="mp-laser-rim"></div>
     
     <div class="mp-main">
@@ -941,10 +941,10 @@
 
       <p class="mp-notice" id="mpNotice"></p>
     </div>
-
-    <!-- HTML5 Audio Core -->
-    <audio id="audioPlayer" preload="auto"></audio>
   </aside>
+
+  <!-- HTML5 Audio Core (Độc lập ngoài UI để phát ngầm mượt mà) -->
+  <audio id="audioPlayer" preload="auto"></audio>
 
   <script src="script.js" defer></script>
 </body>

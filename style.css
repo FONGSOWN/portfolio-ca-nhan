@@ -2015,9 +2015,13 @@ img {
 }
 
 /* ============================================================
-   10. ULTRA LUXURY DIAMOND MUSIC PLAYER
+   10. ULTRA LUXURY DIAMOND MUSIC PLAYER (HIDDEN)
    ============================================================ */
 .music-player {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
   position: fixed;
   z-index: 9999;
   right: 26px;
@@ -2464,10 +2468,7 @@ img {
     text-align: center;
   }
   .music-player {
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    width: auto;
+    display: none !important;
   }
 }
 
